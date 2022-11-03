@@ -87,9 +87,7 @@ if (isset($_POST['Upload'])) {
           fwrite($handle,json_encode($final_data));
           fclose($handle);
 
-           echo file_get_contents($file_name.'.json');
-      exit;
-     
+   
            $hash = '';
            $data_array[0][count($column_name)] = 'Hash';
           for ($j=1; $j < $count; $j++) { 
@@ -123,6 +121,7 @@ if (isset($_POST['Upload'])) {
          $zip->addFile($file);
         }
         $zip->close();
+        ob_clean();
 
         header('Content-Type: application/zip');
         header('Content-disposition: attachment; filename='.$zipname);
