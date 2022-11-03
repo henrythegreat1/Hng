@@ -11,7 +11,7 @@
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     width: 50%;
     margin:50px auto;
-    height: 35vh;
+    height: 33vh;
     display: flex;
     flex-direction: column;
     align-items: center;
