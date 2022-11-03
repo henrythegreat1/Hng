@@ -86,7 +86,9 @@ if (isset($_POST['Upload'])) {
           $handle = fopen($file_name.'.json','w');
           fwrite($handle,json_encode($final_data));
           fclose($handle);
-    
+
+           echo file_get_contents($file_name.'.json');
+      exit;
      
            $hash = '';
            $data_array[0][count($column_name)] = 'Hash';
