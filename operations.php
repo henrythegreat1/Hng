@@ -39,7 +39,7 @@ for ($i=0; $i < count($arr); $i++) {
     if (strtolower($arr[$i])=='multiply'||strtolower($arr[$i])=='multiplication'||strtolower($arr[$i])=='times'||strtolower($arr[$i])=='each') {
         $operator = '*';
     }
-    else if (strtolower($arr[$i])=='addition'||strtolower($arr[$i])=='add'||strtolower($arr[$i])=='plus'||strtolower($arr[$i])=='sum'||strtolower($arr[$i])=='all'||strtolower($arr[$i])=='altogether'||strtolower($arr[$i])=='many'&&strtolower($arr[$i-1])=='how'||strtolower($arr[$i])=='total'||strtolower($arr[$i])=='together') { 
+    else if (strtolower($arr[$i])=='addition'||strtolower($arr[$i])=='add'||strtolower($arr[$i])=='plus'||strtolower($arr[$i])=='sum'||strtolower($arr[$i])=='all'||strtolower($arr[$i])=='altogether'||strtolower($arr[$i])=='many'&&strtolower($arr[$i-1])=='how'||strtolower($arr[$i])=='total'||strtolower($arr[$i])=='together'||strtolower($arr[$i])=='more'&&strtolower($arr[$i+1])=='than'||strtolower($arr[$i])=='increase'||strtolower($arr[$i])=='increased') { 
       if ($operator != '-' && $operator != '*') {
       
         $operator = '+';
@@ -84,7 +84,7 @@ switch ($operator) {
         break;
 }
 
-$result_array = array("slackUsername"=>"manlikehenry","result"=>intval($result),"operation_type"=>Enum::subtraction->value);
+$result_array = array("slackUsername"=>"manlikehenry","result"=>intval($result),"operation_type"=>Enum::addition->value);
 echo json_encode($result_array);
 exit;
 
