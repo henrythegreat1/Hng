@@ -13,16 +13,16 @@ enum Enum: string{
 
 }
 
-$data = json_decode(file_get_contents('php://input'));
+$data = json_decode(file_get_contents("php://input"));
 
 $string = $data->operator_type;
 
 
-if (strtolower($data->operator_type)=='addition') {
+if (strtolower($string)=='addition') {
    $x = $data->x;
    $y = $data->y;
 
-   $result = $x + $y;
+   $result = $x + $y; 
    $result_array = array("slackUsername"=>"manlikehenry","result"=>intval($result),"operation_type"=>Enum::addition->value);
    echo json_encode($result_array);
 }
