@@ -5,10 +5,11 @@
  header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Access-Control-Request-Method,Access-Control-Allow-Origin');
 
 
-enum Operator{
-    case multiplication ;
-    case addition ;
-    case subtraction ;
+enum Enum: string{
+//   case  operation_type = 'multiplication';
+    case multiplication = 'multiplication';
+    case addition = 'addition';
+    case subtraction = 'subtraction';
 
 }
 
@@ -46,17 +47,17 @@ $enum_operator = '';
 switch ($operator) {
     case '*':
         $result = $operand_1 * $operand_2;
-        $enum_operator = Operator::multiplication;
+        $enum_operator = Enum::multiplication;
         break;
 
         case '+':
         $result = $operand_1 + $operand_2;
-        $enum_operator = Operator::addition;
+        $enum_operator = Enum::addition;
         break;
     
         case '-':
         $result =  $operand_1 - $operand_2;
-        $enum_operator = Operator::subtraction;
+        $enum_operator = Enum::subtraction;
         break;
     default:
          $result = 'invalid operator';
