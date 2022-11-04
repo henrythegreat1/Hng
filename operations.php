@@ -18,7 +18,7 @@ $data = json_decode(file_get_contents("php://input"));
 $string = $data->operator_type;
 
 
-if (strtolower($string)=='addition') {
+if ($string==Enum::addition->value) {
    $x = $data->x;
    $y = $data->y;
 
@@ -26,7 +26,7 @@ if (strtolower($string)=='addition') {
    $result_array = array("slackUsername"=>"manlikehenry","result"=>intval($result),"operation_type"=>Enum::addition->value);
    echo json_encode($result_array);
 }
-else if(strtolower($data->operator_type)=='multiplication'){
+else if($string==Enum::multiplication->value){
     $x = $data->x;
     $y = $data->y;
  
@@ -34,7 +34,7 @@ else if(strtolower($data->operator_type)=='multiplication'){
     $result_array = array("slackUsername"=>"manlikehenry","result"=>intval($result),"operation_type"=>Enum::multiplication->value);
     echo json_encode($result_array);
 }
-else if(strtolower($data->operator_type)=='subtraction'){
+else if($string==Enum::subtraction->value){
     $x = $data->x;
     $y = $data->y;
     if ($x > $y) {
