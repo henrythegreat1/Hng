@@ -45,9 +45,7 @@
 
 
 <?php
-// $file =  'new.txt';
-// $file_o = fopen($file,'w');
-// fclose($file_o);
+
  //CHECKS IF SUBMIT BUTTON WAS CLICKED
 if (isset($_POST['Upload'])) {
 
@@ -90,6 +88,7 @@ if (isset($_POST['Upload'])) {
    
            $hash = '';
            $data_array[0][count($column_name)] = 'Hash';
+           //ADDS HASHED KEYS AND VALUES TO THE END OF THE ROW
           for ($j=1; $j < $count; $j++) { 
              for ($k=0; $k < count($column_name); $k++) { 
               $hash .= hash_hmac('sha256',$data_array[$j][$k],$column_name[$k]) ;     
