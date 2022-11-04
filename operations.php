@@ -5,38 +5,38 @@
  header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Access-Control-Request-Method,Access-Control-Allow-Origin');
 
 
-enum Enum: string{
-//   case  operation_type = 'multiplication';
-    case multiplication = 'multiplication';
-    case addition = 'addition';
-    case subtraction = 'subtraction';
+// enum Enum: string{
+// //   case  operation_type = 'multiplication';
+//     case multiplication = 'multiplication';
+//     case addition = 'addition';
+//     case subtraction = 'subtraction';
 
-}
+// }
 
 $data = json_decode(file_get_contents("php://input"));
 
-$string = $data->operator_type;
+$string = $data['operator_type'];
 
 
-if ($string==Enum::addition->value) {
-   $x = $data->x;
-   $y = $data->y;
+if (strtolower($data['operator_type'])=='addition') {
+   $x = $data['x'];
+   $y = $data['y'];
 
-   $result = $x + $y; 
-   $result_array = array("slackUsername"=>"manlikehenry","result"=>intval($result),"operation_type"=>Enum::addition->value);
+   $result = $x + $y;
+   $result_array = array("slackUsername"=>"manlikehenry","result"=>intval($result),"operation_type"=>'addition');
    echo json_encode($result_array);
 }
-else if($string==Enum::multiplication->value){
-    $x = $data->x;
-    $y = $data->y;
+else if(strtolower($data['operator_type'])=='multiplication'){
+    $x = $data['x'];
+    $y = $data['y'];
  
     $result = $x * $y;
-    $result_array = array("slackUsername"=>"manlikehenry","result"=>intval($result),"operation_type"=>Enum::multiplication->value);
+    $result_array = array("slackUsername"=>"manlikehenry","result"=>intval($result),"operation_type"=>'multiplication');
     echo json_encode($result_array);
 }
-else if($string==Enum::subtraction->value){
-    $x = $data->x;
-    $y = $data->y;
+else if(strtolower($data['operator_type'])=='subtraction'){
+    $x = $data['x'];
+    $y = $data['y'];
     if ($x > $y) {
         $result = $x - $y;
     }
@@ -44,7 +44,7 @@ else if($string==Enum::subtraction->value){
         $result = $y - $x;
     }
  
-    $result_array = array("slackUsername"=>"manlikehenry","result"=>intval($result),"operation_type"=>Enum::subtraction->value);
+    $result_array = array("slackUsername"=>"manlikehenry","result"=>intval($result),"operation_type"=>'subtraction');
     echo json_encode($result_array);
 }
 else{
