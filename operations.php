@@ -110,19 +110,19 @@ $enum_operator = '';
 switch ($operator) {
     case '*':
         $result = $operand_1 * $operand_2;
-        $enum_operator = Enum::multiplication->value;
+        $enum_operator = 'multiplication';
         break;
 
         case '+':
         $result = $operand_1 + $operand_2;
-        $enum_operator = Enum::addition->value;
+        $enum_operator = 'addition';
         exit;
         break;
     
         case '-':
             $result =  $operand_1 - $operand_2;
 
-        $enum_operator = Enum::subtraction->value;
+        $enum_operator = 'subtraction';
         exit;
         break;
     default:
