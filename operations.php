@@ -29,13 +29,13 @@ for ($i=0; $i < count($arr); $i++) {
          array_push($number_array,$arr[$i]);
     }
 
-    if (strtolower($arr[$i])=='multiply') {
+    if (strtolower($arr[$i])=='multiply'||strtolower($arr[$i])=='multiplication'||strtolower($arr[$i])=='times') {
         $operator = '*';
     }
-    else if (strtolower($arr[$i])=='addition'||strtolower($arr[$i])=='add') {
+    else if (strtolower($arr[$i])=='addition'||strtolower($arr[$i])=='add'||strtolower($arr[$i])=='plus'||strtolower($arr[$i])=='sum') {
         $operator = '+';
     }
-   else if (strtolower($arr[$i])=='subtract'||strtolower($arr[$i])=='minus') {
+   else if (strtolower($arr[$i])=='subtract'||strtolower($arr[$i])=='minus'||strtolower($arr[$i])=='left'||strtolower($arr[$i])=='subtraction') {
         $operator = '-';
     }
 }
@@ -47,17 +47,17 @@ $enum_operator = '';
 switch ($operator) {
     case '*':
         $result = $operand_1 * $operand_2;
-        $enum_operator = Enum::multiplication;
+        $enum_operator = Enum::multiplication->value;
         break;
 
         case '+':
         $result = $operand_1 + $operand_2;
-        $enum_operator = Enum::addition;
+        $enum_operator = Enum::addition->value;
         break;
     
         case '-':
         $result =  $operand_1 - $operand_2;
-        $enum_operator = Enum::subtraction;
+        $enum_operator = Enum::subtraction->value;
         break;
     default:
          $result = 'invalid operator';
