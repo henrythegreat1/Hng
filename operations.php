@@ -82,6 +82,6 @@ switch ($operator) {
         break;
 }
 
-$result_array = array("slackUsername"=>"manlikehenry","result"=>intval($result),"operation type"=>$enum_operator);
+$result_array = array("slackUsername"=>"manlikehenry","result"=>intval($result),"operation_type"=>Enum::subtraction->value);
 echo json_encode($result_array);
 ?>
