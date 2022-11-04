@@ -16,6 +16,13 @@ enum Enum: string{
 $data = json_decode(file_get_contents('php://input'));
 
 $string = $data->operator_type;
+$string = str_replace('.','',$string);
+$string = str_replace(',','',$string);
+$string = str_replace('!','',$string);
+$string = str_replace(';','',$string);
+$string = str_replace(':','',$string);
+$string = str_replace('"','',$string);
+$string = str_replace('\'','',$string);
 
 $arr = explode(' ',$string);
 
@@ -32,17 +39,23 @@ for ($i=0; $i < count($arr); $i++) {
     if (strtolower($arr[$i])=='multiply'||strtolower($arr[$i])=='multiplication'||strtolower($arr[$i])=='times') {
         $operator = '*';
     }
-    else if (strtolower($arr[$i])=='addition'||strtolower($arr[$i])=='add'||strtolower($arr[$i])=='plus'||strtolower($arr[$i])=='sum') {
+    else if (strtolower($arr[$i])=='addition'||strtolower($arr[$i])=='add'||strtolower($arr[$i])=='plus'||strtolower($arr[$i])=='sum'||strtolower($arr[$i])=='all'||strtolower($arr[$i])=='altogether'||strtolower($arr[$i])=='many'&&strtolower($arr[$i-1])=='how'||strtolower($arr[$i])=='total'||strtolower($arr[$i])=='together') { 
+      if ($operator != '-' && $operator != '*') {
+      
         $operator = '+';
+      }
     }
    else if (strtolower($arr[$i])=='subtract'||strtolower($arr[$i])=='minus'||strtolower($arr[$i])=='left'||strtolower($arr[$i])=='subtraction') {
         $operator = '-';
+      
     }
 }
 
 $operand_1 = array_pop($number_array);
 $operand_2 = array_pop($number_array);
 
+// echo $operand_1.' '.$operator.' '.$operand_2;
+// exit;
 $enum_operator = '';
 switch ($operator) {
     case '*':
@@ -56,7 +69,12 @@ switch ($operator) {
         break;
     
         case '-':
+       if ($operand_2>$operand_1) {
+        $result =  $operand_2 - $operand_1;
+       }
+       else{
         $result =  $operand_1 - $operand_2;
+       }
         $enum_operator = Enum::subtraction->value;
         break;
     default:
