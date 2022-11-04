@@ -45,7 +45,7 @@ for ($i=0; $i < count($arr); $i++) {
         $operator = '+';
       }
     }
-   else if (strtolower($arr[$i])=='subtract'||strtolower($arr[$i])=='minus'||strtolower($arr[$i])=='left'||strtolower($arr[$i])=='subtraction'||strtolower($arr[$i])=='remove'||strtolower($arr[$i])=='reduce'||strtolower($arr[$i])=='deduce'||strtolower($arr[$i])=='decrease'||strtolower($arr[$i])=='diminute'||strtolower($arr[$i])=='diminish') {
+   else if (strtolower($arr[$i])=='subtract'||strtolower($arr[$i])=='minus'||strtolower($arr[$i])=='left'||strtolower($arr[$i])=='subtraction'||strtolower($arr[$i])=='remove'||strtolower($arr[$i])=='reduce'||strtolower($arr[$i])=='deduce'||strtolower($arr[$i])=='decrease'||strtolower($arr[$i])=='diminute'||strtolower($arr[$i])=='diminish'||strtolower($arr[$i])=='take'&&strtolower($arr[$i+1])=='away') {
         $operator = '-';
       
     }
@@ -61,16 +61,11 @@ switch ($operator) {
     case '*':
         $result = $operand_1 * $operand_2;
         $enum_operator = Enum::multiplication->value;
-        $result_array = array("slackUsername"=>"manlikehenry","result"=>intval($result),"operation_type"=>Enum::multiplication->value);
-        echo json_encode($result_array);
-        exit;
         break;
 
         case '+':
         $result = $operand_1 + $operand_2;
         $enum_operator = Enum::addition->value;
-        $result_array = array("slackUsername"=>"manlikehenry","result"=>intval($result),"operation_type"=>Enum::addition->value);
-        echo json_encode($result_array);
         exit;
         break;
     
@@ -82,8 +77,6 @@ switch ($operator) {
         $result =  $operand_1 - $operand_2;
        }
         $enum_operator = Enum::subtraction->value;
-        $result_array = array("slackUsername"=>"manlikehenry","result"=>intval($result),"operation_type"=>Enum::subtraction->value);
-        echo json_encode($result_array);
         exit;
         break;
     default:
@@ -91,5 +84,8 @@ switch ($operator) {
         break;
 }
 
+$result_array = array("slackUsername"=>"manlikehenry","result"=>intval($result),"operation_type"=>Enum::subtraction->value);
+echo json_encode($result_array);
+exit;
 
 ?>
