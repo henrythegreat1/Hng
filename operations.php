@@ -36,16 +36,34 @@ for ($i=0; $i < count($arr); $i++) {
          array_push($number_array,$arr[$i]);
     }
 
-    if (strtolower($arr[$i])=='multiply'||strtolower($arr[$i])=='multiplication'||strtolower($arr[$i])=='times'||strtolower($arr[$i])=='each') {
+    if (strtolower($arr[$i])=='multiply'||strtolower($arr[$i])=='multiplication'||strtolower($arr[$i])=='times'
+    ||strtolower($arr[$i])=='x'||strtolower($arr[$i])=='*'||strtolower($arr[$i])=='exponentially'||strtolower($arr[$i])=='accumulate'
+    ||strtolower($arr[$i])=='proliferate'||strtolower($arr[$i])=='mount'||strtolower($arr[$i])=='expand'||strtolower($arr[$i])=='spread'
+    ||strtolower($arr[$i])=='mushroom'||strtolower($arr[$i])=='snowball'||strtolower($arr[$i])=='numerous'||strtolower($arr[$i])=='burgeon'
+    ||strtolower($arr[$i])=='wax'
+    // ||strtolower($arr[$i])=='each'
+    ) {
         $operator = '*';
     }
-    else if (strtolower($arr[$i])=='addition'||strtolower($arr[$i])=='add'||strtolower($arr[$i])=='plus'||strtolower($arr[$i])=='sum'||strtolower($arr[$i])=='all'||strtolower($arr[$i])=='altogether'||strtolower($arr[$i])=='many'&&strtolower($arr[$i-1])=='how'||strtolower($arr[$i])=='total'||strtolower($arr[$i])=='together'||strtolower($arr[$i])=='more'&&strtolower($arr[$i+1])=='than'||strtolower($arr[$i])=='increase'||strtolower($arr[$i])=='increased') { 
+    else if (strtolower($arr[$i])=='addition'||strtolower($arr[$i])=='add'||strtolower($arr[$i])=='plus'||
+    strtolower($arr[$i])=='sum'||strtolower($arr[$i])=='all'||strtolower($arr[$i])=='altogether'||
+    strtolower($arr[$i])=='many'&&strtolower($arr[$i-1])=='how'||strtolower($arr[$i])=='total'||
+    strtolower($arr[$i])=='together'||strtolower($arr[$i])=='more'&&strtolower($arr[$i+1])=='than'||
+    strtolower($arr[$i])=='increase'||strtolower($arr[$i])=='increased'||strtolower($arr[$i])=='count'||
+    strtolower($arr[$i])=='figure'&&strtolower($arr[$i+1])=='up'||strtolower($arr[$i])=='compute'||
+    strtolower($arr[$i])=='calculate'||strtolower($arr[$i])=='enumerate'||strtolower($arr[$i])=='reckon'||
+    strtolower($arr[$i])=='tally'||strtolower($arr[$i])=='+') { 
       if ($operator != '-' && $operator != '*') {
       
         $operator = '+';
       }
     }
-   else if (strtolower($arr[$i])=='subtract'||strtolower($arr[$i])=='minus'||strtolower($arr[$i])=='left'||strtolower($arr[$i])=='subtraction'||strtolower($arr[$i])=='remove'||strtolower($arr[$i])=='reduce'||strtolower($arr[$i])=='deduce'||strtolower($arr[$i])=='decrease'||strtolower($arr[$i])=='diminute'||strtolower($arr[$i])=='diminish'||strtolower($arr[$i])=='take'&&strtolower($arr[$i+1])=='away') {
+   else if (strtolower($arr[$i])=='subtract'||strtolower($arr[$i])=='minus'||strtolower($arr[$i])=='left'||
+   strtolower($arr[$i])=='subtraction'||strtolower($arr[$i])=='remove'||strtolower($arr[$i])=='reduce'||
+   strtolower($arr[$i])=='deduce'||strtolower($arr[$i])=='decrease'||strtolower($arr[$i])=='diminute'||
+   strtolower($arr[$i])=='diminish'||strtolower($arr[$i])=='take'||strtolower($arr[$i])=='deduct'||strtolower($arr[$i])=='debit'
+   ||strtolower($arr[$i])=='abstract'||strtolower($arr[$i])=='discount'||strtolower($arr[$i])=='withdraw'||strtolower($arr[$i])=='dock'
+   ||strtolower($arr[$i])=='off'||strtolower($arr[$i])=='-') {
         $operator = '-';
       
     }
@@ -83,8 +101,8 @@ switch ($operator) {
          $result = 'invalid operator';
         break;
 }
-
-$result_array = array("slackUsername"=>"manlikehenry","result"=>intval($result),"operation_type"=>Enum::subtraction->value);
+$enum_operator = Enum::subtraction->value;
+$result_array = array("slackUsername"=>"manlikehenry","result"=>intval($result),"operation_type"=>$enum_operator);
 echo json_encode($result_array);
 exit;
 
