@@ -43,7 +43,9 @@ for ($i=0; $i < count($arr); $i++) {
     ||strtolower($arr[$i])=='wax'
     // ||strtolower($arr[$i])=='each'
     ) {
-        $operator = '*';
+        if ($operator != '-' && $operator = '+') {
+            $operator = '*';
+          }
     }
     else if (strtolower($arr[$i])=='addition'||strtolower($arr[$i])=='add'||strtolower($arr[$i])=='plus'||
     strtolower($arr[$i])=='sum'||strtolower($arr[$i])=='all'||strtolower($arr[$i])=='altogether'||
@@ -64,8 +66,9 @@ for ($i=0; $i < count($arr); $i++) {
    strtolower($arr[$i])=='diminish'||strtolower($arr[$i])=='take'||strtolower($arr[$i])=='deduct'||strtolower($arr[$i])=='debit'
    ||strtolower($arr[$i])=='abstract'||strtolower($arr[$i])=='discount'||strtolower($arr[$i])=='withdraw'||strtolower($arr[$i])=='dock'
    ||strtolower($arr[$i])=='off'||strtolower($arr[$i])=='-') {
-        $operator = '-';
-      
+        if ($operator != '*' && $operator = '+') {
+            $operator = '-';
+          }
     }
 }
 
