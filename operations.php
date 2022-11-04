@@ -88,12 +88,13 @@ switch ($operator) {
         break;
     
         case '-':
-       if ($operand_2>$operand_1) {
-        $result =  $operand_2 - $operand_1;
-       }
-       else{
-        $result =  $operand_1 - $operand_2;
-       }
+            $result =  $operand_1 - $operand_2;
+    //    if ($operand_2>$operand_1) {
+    //     $result =  $operand_2 - $operand_1;
+    //    }
+    //    else{
+    //     $result =  $operand_1 - $operand_2;
+    //    }
         $enum_operator = Enum::subtraction->value;
         exit;
         break;
@@ -101,8 +102,8 @@ switch ($operator) {
          $result = 'invalid operator';
         break;
 }
-$enum_operator = Enum::subtraction->value;
-$result_array = array("slackUsername"=>"manlikehenry","result"=>intval($result),"operation_type"=>'');
+
+$result_array = array("slackUsername"=>"manlikehenry","result"=>intval($result),"operation_type"=>$enum_operator);
 echo json_encode($result_array);
 exit;
 
