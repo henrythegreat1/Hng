@@ -5,10 +5,10 @@
  header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Access-Control-Request-Method,Access-Control-Allow-Origin');
 
 
-enum Operator: string{
-    case multiplication = '*';
-    case addition = '+';
-    case subtraction = '-';
+enum Operator{
+    case multiplication ;
+    case addition ;
+    case subtraction ;
 
 }
 
@@ -63,6 +63,6 @@ switch ($operator) {
         break;
 }
 
-$result_array = array("slackUsername"=>"manlikehenry","result"=>$result,"operation_type"=>$enum_operator);
+$result_array = array("slackUsername"=>"manlikehenry","result"=>intval($result),"operation_type"=>$enum_operator);
 echo json_encode($result_array);
 ?>
