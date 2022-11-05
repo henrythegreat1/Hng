@@ -16,9 +16,9 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
     
 $data = json_decode(file_get_contents("php://input"));
 
-$string = $_POST['operator_type'] ? $_POST['operator_type'] : $data['operator_type'];
-$x = $_POST['x'] ? $_POST['X']: $data['x'] ;
-$y = $_POST['y'] ? $_POST['y'] : $data['y'];
+$string = $_POST['operator_type'] ? $_POST['operator_type'] : $data->operator_type;
+$x = $_POST['x'] ? $_POST['X']: $data->x ;
+$y = $_POST['y'] ? $_POST['y'] : $data->y;
 
 
 if (strtolower($string)=='addition'&&is_int($x)&&is_int($y)) {
