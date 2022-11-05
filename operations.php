@@ -24,7 +24,7 @@ if (strtolower($data->operator_type)=='addition'&&is_int($x)&&is_int($y)) {
 
    $result = $x + $y;
    $result_array = array("slackUsername"=>"manlikehenry","result"=>intval($result),"operation_type"=>'addition');
-   echo json_encode($result_array);
+   echo(json_encode($result_array));
    exit;
 }
 else if(strtolower($data->operator_type)=='multiplication'&&is_int($x)&&is_int($y)){
@@ -33,7 +33,7 @@ else if(strtolower($data->operator_type)=='multiplication'&&is_int($x)&&is_int($
  
     $result = $x * $y;
     $result_array = array("slackUsername"=>"manlikehenry","result"=>intval($result),"operation_type"=>'multiplication');
-    echo json_encode($result_array);
+    echo(json_encode($result_array));
     exit;
 }
 else if(strtolower($data->operator_type)=='subtraction'&&is_int($x)&&is_int($y)){
@@ -47,7 +47,7 @@ else if(strtolower($data->operator_type)=='subtraction'&&is_int($x)&&is_int($y))
     }
  
     $result_array = array("slackUsername"=>"manlikehenry","result"=>intval($result),"operation_type"=>'subtraction');
-    echo json_encode($result_array);
+    echo(json_encode($result_array));
     exit;
 }
 else if ($string != '') 
@@ -141,7 +141,7 @@ switch ($operator) {
 }
 
 $result_array = array("slackUsername"=>"manlikehenry","result"=>intval($result),"operation_type"=>$enum_operator);
-echo json_encode($result_array);
+echo(json_encode($result_array));
 }
 else{
     if ($string == '') {
