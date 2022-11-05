@@ -15,28 +15,30 @@
 
 $data = json_decode(file_get_contents("php://input"));
 
-$string = $data['operator_type'];
+$string = $data->operator_type;
 
 
-if (strtolower($data['operator_type'])=='addition') {
-   $x = $data['x'];
-   $y = $data['y'];
+if (strtolower($data->operator_type)=='addition'&&is_int($x)&&is_int($y)) {
+   $x = $data->x;
+   $y = $data->y;
 
    $result = $x + $y;
    $result_array = array("slackUsername"=>"manlikehenry","result"=>intval($result),"operation_type"=>'addition');
    echo json_encode($result_array);
+   exit;
 }
-else if(strtolower($data['operator_type'])=='multiplication'){
-    $x = $data['x'];
-    $y = $data['y'];
+else if(strtolower($data->operator_type)=='multiplication'&&is_int($x)&&is_int($y)){
+    $x = $data->x;
+    $y = $data->y;
  
     $result = $x * $y;
     $result_array = array("slackUsername"=>"manlikehenry","result"=>intval($result),"operation_type"=>'multiplication');
     echo json_encode($result_array);
+    exit;
 }
-else if(strtolower($data['operator_type'])=='subtraction'){
-    $x = $data['x'];
-    $y = $data['y'];
+else if(strtolower($data->operator_type)=='subtraction'&&is_int($x)&&is_int($y)){
+    $x = $data->x;
+    $y = $data->y;
     if ($x > $y) {
         $result = $x - $y;
     }
@@ -46,8 +48,10 @@ else if(strtolower($data['operator_type'])=='subtraction'){
  
     $result_array = array("slackUsername"=>"manlikehenry","result"=>intval($result),"operation_type"=>'subtraction');
     echo json_encode($result_array);
+    exit;
 }
-else{
+else if ($string != '') 
+{
     $string = str_replace('.','',$string);
     $string = str_replace(',','',$string);
     $string = str_replace('!','',$string);
@@ -102,6 +106,12 @@ else{
         }
     }
 
+    if ($operator == '') {
+        die(json_encode(['error'=>'INVALID SENTENCE']));
+        
+    }
+    
+
     $operand_1 = array_pop($number_array);
 $operand_2 = array_pop($number_array);
 
@@ -132,6 +142,17 @@ switch ($operator) {
 
 $result_array = array("slackUsername"=>"manlikehenry","result"=>intval($result),"operation_type"=>$enum_operator);
 echo json_encode($result_array);
+}
+else{
+    if ($string == '') {
+        die(json_encode(['error'=>'INVALID OPERATION TYPE']));
+    }
+    if (is_nan($x)) {
+        die(json_encode(['error'=>'X is not an integer']));
+    }
+    if (is_nan($y)) {
+        die(json_encode(['error'=>'Y is not an integer']));
+    }
 }
 
 
