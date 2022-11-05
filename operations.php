@@ -16,20 +16,18 @@
 $data = json_decode(file_get_contents("php://input"));
 
 $string = $data->operator_type;
+$x = $data->x ?? null;
+$y = $data->y ?? null;
 
 
 if (strtolower($data->operator_type)=='addition'&&is_int($x)&&is_int($y)) {
-   $x = $data->x;
-   $y = $data->y;
-
+ 
    $result = $x + $y;
    $result_array = array("slackUsername"=>"manlikehenry","result"=>intval($result),"operation_type"=>'addition');
    echo(json_encode($result_array));
    exit;
 }
 else if(strtolower($data->operator_type)=='multiplication'&&is_int($x)&&is_int($y)){
-    $x = $data->x;
-    $y = $data->y;
  
     $result = $x * $y;
     $result_array = array("slackUsername"=>"manlikehenry","result"=>intval($result),"operation_type"=>'multiplication');
@@ -37,8 +35,7 @@ else if(strtolower($data->operator_type)=='multiplication'&&is_int($x)&&is_int($
     exit;
 }
 else if(strtolower($data->operator_type)=='subtraction'&&is_int($x)&&is_int($y)){
-    $x = $data->x;
-    $y = $data->y;
+  
     if ($x > $y) {
         $result = $x - $y;
     }
@@ -50,8 +47,9 @@ else if(strtolower($data->operator_type)=='subtraction'&&is_int($x)&&is_int($y))
     echo(json_encode($result_array));
     exit;
 }
-else if ($string != '') 
+else if ($string != '' && $x == null && $y == null) 
 {
+    
     $string = str_replace('.','',$string);
     $string = str_replace(',','',$string);
     $string = str_replace('!','',$string);
@@ -105,8 +103,9 @@ else if ($string != '')
               
         }
     }
-
+    
     if ($operator == '') {
+        
         die(json_encode(['error'=>'INVALID SENTENCE']));
         
     }
@@ -126,14 +125,19 @@ switch ($operator) {
         case '+':
         $result = $operand_1 + $operand_2;
         $enum_operator = 'addition';
-        exit;
+        
         break;
     
         case '-':
+         if ($operand_1 > $operand_2) {
             $result =  $operand_1 - $operand_2;
+         }
+         else{
+            $result =  $operand_2 - $operand_1;
+         }
 
         $enum_operator = 'subtraction';
-        exit;
+        
         break;
     default:
          $result = 'invalid operator';
@@ -144,13 +148,15 @@ $result_array = array("slackUsername"=>"manlikehenry","result"=>intval($result),
 echo(json_encode($result_array));
 }
 else{
+   
+
     if ($string == '') {
         die(json_encode(['error'=>'INVALID OPERATION TYPE']));
     }
-    if (is_nan($x)) {
+    if (!is_int($x)) {
         die(json_encode(['error'=>'X is not an integer']));
     }
-    if (is_nan($y)) {
+    if (!is_int($y)) {
         die(json_encode(['error'=>'Y is not an integer']));
     }
 }
